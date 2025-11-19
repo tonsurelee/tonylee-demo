@@ -8,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -22,5 +22,111 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 暗色模式下的滚动条 */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: #475569;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+  }
+}
+
+/* 移动端导航菜单样式 */
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #e2e8f0;
+    padding: 1rem;
+    z-index: 40;
+  }
+
+  .mobile-nav.show {
+    display: block;
+  }
+
+  .mobile-nav a {
+    display: block;
+    padding: 0.75rem 0;
+    color: #64748b;
+    text-decoration: none;
+    border-bottom: 1px solid #f1f5f9;
+    transition: color 0.2s;
+  }
+
+  .mobile-nav a:hover {
+    color: #1e293b;
+  }
+
+  .mobile-nav a:last-child {
+    border-bottom: none;
+  }
+}
+
+/* 暗色模式下的移动端导航 */
+@media (prefers-color-scheme: dark) {
+  @media (max-width: 768px) {
+    .mobile-nav {
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 1px solid #334155;
+    }
+
+    .mobile-nav a {
+      color: #94a3b8;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .mobile-nav a:hover {
+      color: #e2e8f0;
+    }
+  }
+}
+
+/* 动画效果 */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
